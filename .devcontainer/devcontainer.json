@@ -1,0 +1,21 @@
+{
+  "name": "Node 21 + AWS CDK with SSH Forwarding and Git Config",
+  "dockerFile": "Dockerfile",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  "mounts": [
+    "source=${localEnv:USERPROFILE}/.gitconfig,target=/root/.gitconfig,type=bind"
+  ],
+  "runArgs": [
+    "-v",
+    "//./pipe/openssh-ssh-agent:/ssh-auth.sock",
+    "-e",
+    "SSH_AUTH_SOCK=/ssh-auth.sock"
+  ]
+}
